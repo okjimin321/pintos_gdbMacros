@@ -52,10 +52,8 @@ define trace_run
     while($i < 100000)
         set $cur = (struct thread *)((int)$esp & ~0xfff)
 
-        if($cur != -1)
-            p ::ticks
-            printf "RUNNING THREAD: tid= %-5d name= %-10s\n", $cur->tid, $cur->name
-        end
+        p ::ticks
+        printf "RUNNING THREAD: tid= %-5d name= %-10s\n", $cur->tid, $cur->name
 
         set $i = $i + 1
         c

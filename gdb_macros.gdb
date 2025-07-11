@@ -77,7 +77,8 @@ define trace_run
     end
 end
 
-define test_trace
+#Operates same as trace_run But, trace doesn't Print "idle" thread
+define trace
     
     b $arg0 
     commands
@@ -87,22 +88,11 @@ define test_trace
     set $i = 0
 
     while($i < 100000)
-        set $cur = 0
-        set $e = all_list.head.next
-        while ($e != &all_list.tail)
-            set $t = (struct thread *)((char *)$e - 32)
-            if($t->status == 0)
-                set $cur = $t
-            end
-            set $e = $e->next
-        end
+        set $cur = (struct thread *)((int)$esp & ~0xfff)
 
-        if($cur != 0)
-            if($cur->tid != 2)
-                p ::ticks
-                printf "RUNNING THREAD: tid= %-5d name= %-10s\n", $cur->tid, $cur->name
-                
-            end
+        if($cur->tid != 2)
+            p ::ticks
+            printf "RUNNING THREAD: tid= %-5d name= %-10s\n", $cur->tid, $cur->name
         end
 
         set $i = $i + 1

@@ -1,4 +1,4 @@
-# pintos_gdbMacros
+# pintos_gdb_macros
 Tools for Debugging Pintos
 
 - **connect:** same as "target remote localhost:1234"

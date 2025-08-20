@@ -1,6 +1,8 @@
 # pintos_gdbMacros
 Tools for Debugging Pintos
 
+- **connect:** same as "target remote localhost:1234"
+ 
 - **p_ready:** print all ready threads.
 - **p_blocked:** print all blocked threads.
 - **p_all:** print all threads regardless of their status.

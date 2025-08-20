@@ -78,7 +78,7 @@ define trace_run
 end
 
 #Operates same as trace_run But, trace doesn't Print "idle" thread
-define trace
+define trace_all_thread
     
     b $arg0 
     commands
